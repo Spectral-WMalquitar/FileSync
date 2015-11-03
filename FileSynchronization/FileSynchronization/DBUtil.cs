@@ -32,9 +32,16 @@ namespace DatabaseUtilities
             }
         }
 
+        //Added a proper exception handling for database connection.
         public OleDbConnection GetConnection()
         {
-            return conn;
+            if (conn != null)
+                return conn;
+            else
+            {
+                conn = new OleDbConnection(Connstr);
+                return conn;
+            }
         }
         public OleDbDataReader ExecuteQuery(string sql)
         {
